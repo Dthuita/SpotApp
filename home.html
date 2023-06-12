@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tfjs-vis -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
+    <title>Document</title>
+</head>
+<body style="display:flex; justify-content:center; height:100vh">
+
+    <div style="height:200px; width:500px; margin-top: 300px; border:solid 2px black; border-radius: 10px; display:flex; justify-content:center; background-color: aqua;">
+        <div style="align-items: center; ">
+            woooah
+            hello pappi
+        </div>
+    </div>
+
+    </div>
+    <script>
+        let modelHistory;
+        (async() => {
+            await fetch('http://127.0.0.1:8080/getSongIDs')
+            await fetch('http://127.0.0.1:8080/getSongAnalysis')
+            modelHistory = await fetch('http://127.0.0.1:8080/computeModel').then( res => res.json() );
+            console.log(modelHistory);
+
+            const surface = { name: 'Loss History', tab: 'Training' };
+            tfvis.show.history(surface, modelHistory, ['loss', 'val_loss', 'acc', 'val_acc']);
+
+            // await fetch('http://127.0.0.1:8080/predictPlay')
+        })();
+    </script>
+</body>
+</html>
